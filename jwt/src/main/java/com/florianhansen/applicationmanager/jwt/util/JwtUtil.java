@@ -59,10 +59,13 @@ public class JwtUtil {
 	
 	public String generateToken(UserDetails details) {
 		JwtUser user = (JwtUser) details;
-		
+		return generateToken(user.getUsername(), user.getId());
+	}
+	
+	public String generateToken(String username, int userId) {
 		Map<String, Object> claims = new HashMap<>();
-		return Jwts.builder().setClaims(claims).setSubject(user.getUsername()).setIssuedAt(new Date(System.currentTimeMillis()))
-				.setExpiration(new Date(System.currentTimeMillis() + 10 * 60 * 60 * 1000)).claim("userId", user.getId())
+		return Jwts.builder().setClaims(claims).setSubject(username).setIssuedAt(new Date(System.currentTimeMillis()))
+				.setExpiration(new Date(System.currentTimeMillis() + 10 * 60 * 60 * 1000)).claim("userId", userId)
 				.signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();
 	}
 	
