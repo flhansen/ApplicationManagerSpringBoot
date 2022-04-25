@@ -1,0 +1,13 @@
+spring:
+   config:
+      import: file:${HOME}/.secret/secrets.yml
+   jpa:
+      show-sql: true
+      hibernate:
+         ddl-auto: update
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+   datasource:
+      platform: postgres
+      url: jdbc:postgresql://localhost:5432/applicationmanager_loginservice
+      username: ${database.username}
+      password: ${database.password}
