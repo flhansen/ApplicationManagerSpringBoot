@@ -19,7 +19,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		// TODO: See https://ertan-toker.de/spring-boot-spring-security-jwt-token-en/
 		final String authorizationHeader = request.getHeader("Authorization");
 		
 		if (authorizationHeader == null) {

@@ -19,6 +19,6 @@
         <module>loginservice</module>
         <module>applicationservice</module>
         <module>jwt</module>
-        <module>database</module>
+        <module>model</module>
     </modules>
 </project>
