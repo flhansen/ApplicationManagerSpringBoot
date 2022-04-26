@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +28,7 @@ import com.florianhansen.applicationmanager.loginservice.model.RegisterResponse;
 import com.florianhansen.applicationmanager.model.Account;
 import com.florianhansen.applicationmanager.model.repository.AccountRepository;
 
+@CrossOrigin
 @RestController
 @RequestMapping("api/auth")
 public class AuthController {

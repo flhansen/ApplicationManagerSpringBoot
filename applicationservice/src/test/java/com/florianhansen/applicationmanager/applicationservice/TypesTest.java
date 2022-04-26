@@ -43,7 +43,7 @@ public class TypesTest {
 	public void getWorkTypesUnauthorized() throws Exception {
 		mockMvc
 			.perform(get("/api/types/worktypes"))
-			.andExpect(status().is(403));
+			.andExpect(status().is(200));
 	}
 	
 	@Test
@@ -58,7 +58,7 @@ public class TypesTest {
 	public void getStatusesUnauthorized() throws Exception {
 		mockMvc
 			.perform(get("/api/types/statuses"))
-			.andExpect(status().is(403));
+			.andExpect(status().is(200));
 	}
 	
 	@Test

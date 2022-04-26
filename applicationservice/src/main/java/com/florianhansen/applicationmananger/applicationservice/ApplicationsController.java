@@ -7,6 +7,7 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,12 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.florianhansen.applicationmanager.jwt.util.JwtUtil;
+import com.florianhansen.applicationmanager.model.ApiResponse;
 import com.florianhansen.applicationmanager.model.Application;
 import com.florianhansen.applicationmanager.model.repository.ApplicationRepository;
 import com.florianhansen.applicationmananger.applicationservice.model.ApplicationResponse;
 import com.florianhansen.applicationmananger.applicationservice.model.ApplicationsResponse;
 
 
+@CrossOrigin
 @RestController
 @RequestMapping("api/applications")
 public class ApplicationsController {
@@ -73,7 +76,7 @@ public class ApplicationsController {
 		applications.add(request);
 		applicationRepo.saveAll(applications);
 
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok(new ApiResponse("New application has been created"));
 	}
 	
 	@DeleteMapping("{applicationId}")
@@ -88,7 +91,7 @@ public class ApplicationsController {
 				throw new EntityNotFoundException();
 			
 			applicationRepo.delete(application);
-			return ResponseEntity.ok().build();
+			return ResponseEntity.ok(new ApiResponse("Application has been deleted"));
 		} catch (EntityNotFoundException e) {
 			return ResponseEntity.notFound().build();
 		}
@@ -116,7 +119,7 @@ public class ApplicationsController {
 			application.setWorkTypeId(request.getWorkTypeId());
 			applicationRepo.save(application);
 
-			return ResponseEntity.ok().build();
+			return ResponseEntity.ok(new ApiResponse("Application has been updated"));
 		} catch (EntityNotFoundException e) {
 			return ResponseEntity.notFound().build();
 		}
