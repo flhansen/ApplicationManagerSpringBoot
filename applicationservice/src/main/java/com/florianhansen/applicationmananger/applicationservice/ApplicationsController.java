@@ -6,7 +6,7 @@ import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.florianhansen.applicationmanager.jwt.service.TokenAuthenticationFacade;
 import com.florianhansen.applicationmanager.jwt.util.JwtUtil;
 import com.florianhansen.applicationmanager.model.ApiResponse;
 import com.florianhansen.applicationmanager.model.Application;
@@ -31,6 +32,9 @@ import com.florianhansen.applicationmananger.applicationservice.model.Applicatio
 public class ApplicationsController {
 	
 	@Autowired
+	private TokenAuthenticationFacade authFacade;
+	
+	@Autowired
 	private ApplicationRepository applicationRepo;
 	
 	@Autowired
@@ -38,7 +42,7 @@ public class ApplicationsController {
 
 	@GetMapping
 	public ResponseEntity<?> getApplications() {
-		String token = (String) SecurityContextHolder.getContext().getAuthentication().getCredentials();
+		String token = authFacade.getToken();
 		Integer userId = jwtUtil.getUserId(token);
 		
 		List<Application> applications = applicationRepo.findApplicationsByUserId(userId);
@@ -46,8 +50,8 @@ public class ApplicationsController {
 	}
 	
 	@GetMapping("{applicationId}")
-	public ResponseEntity<?> getApplication(@PathVariable int applicationId) {
-		String token = (String) SecurityContextHolder.getContext().getAuthentication().getCredentials();
+	public ResponseEntity<?> getApplication(@PathVariable int applicationId, Authentication authentication) {
+		String token = authFacade.getToken();
 		Integer userId = jwtUtil.getUserId(token);
 		
 		Application application = null;
@@ -67,7 +71,7 @@ public class ApplicationsController {
 	
 	@PostMapping
 	public ResponseEntity<?> createApplication(@RequestBody Application request) {
-		String token = (String) SecurityContextHolder.getContext().getAuthentication().getCredentials();
+		String token = authFacade.getToken();
 		Integer userId = jwtUtil.getUserId(token);
 
 		request.setUserId(userId);
@@ -81,7 +85,7 @@ public class ApplicationsController {
 	
 	@DeleteMapping("{applicationId}")
 	public ResponseEntity<?> deleteApplication(@PathVariable int applicationId) {
-		String token = (String) SecurityContextHolder.getContext().getAuthentication().getCredentials();
+		String token = authFacade.getToken();
 		Integer userId = jwtUtil.getUserId(token);
 		
 		try {
@@ -99,7 +103,7 @@ public class ApplicationsController {
 	
 	@PutMapping("{applicationId}")
 	public ResponseEntity<?> updateApplication(@PathVariable int applicationId, @RequestBody Application request) {
-		String token = (String) SecurityContextHolder.getContext().getAuthentication().getCredentials();
+		String token = authFacade.getToken();
 		Integer userId = jwtUtil.getUserId(token);
 		
 		try {
