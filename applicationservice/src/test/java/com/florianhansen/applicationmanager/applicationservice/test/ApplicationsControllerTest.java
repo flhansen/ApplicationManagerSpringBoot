@@ -1,4 +1,4 @@
-package com.florianhansen.applicationmanager.applicationservice;
+package com.florianhansen.applicationmanager.applicationservice.test;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -31,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
 @TestInstance(Lifecycle.PER_CLASS)
 @AutoConfigureMockMvc
-public class ApplicationsTest {
+public class ApplicationsControllerTest {
 	
 	@Autowired
 	private MockMvc mockMvc;

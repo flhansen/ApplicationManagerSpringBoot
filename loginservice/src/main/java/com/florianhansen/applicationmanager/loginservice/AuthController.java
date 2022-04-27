@@ -1,6 +1,5 @@
 package com.florianhansen.applicationmanager.loginservice;
 
-import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 
@@ -11,8 +10,10 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.florianhansen.applicationmanager.crypto.HmacSHA256Encoder;
+import com.florianhansen.applicationmanager.jwt.service.JwtAuthenticationFacade;
 import com.florianhansen.applicationmanager.jwt.service.JwtUserDetailsService;
 import com.florianhansen.applicationmanager.jwt.util.JwtUtil;
 import com.florianhansen.applicationmanager.loginservice.model.AuthenticationRequest;
@@ -34,6 +36,9 @@ import com.florianhansen.applicationmanager.model.repository.AccountRepository;
 @RestController
 @RequestMapping("api/auth")
 public class AuthController {
+	
+	@Autowired
+	private JwtAuthenticationFacade jwtFacade;
 	
 	@Autowired
 	private AuthenticationManager authManager;
@@ -76,19 +81,33 @@ public class AuthController {
 		
 		List<Account> accounts = accountRepo.findAll();
 		accounts.add(account);
-		accountRepo.saveAll(accounts);
+		
+		try {
+			accountRepo.saveAll(accounts);
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username or email already exists", e);
+		}
 		
 		return ResponseEntity.ok(new RegisterResponse(HttpStatus.OK, "User has been registered"));
 	}
 	
 	@DeleteMapping("delete")
-	public ResponseEntity<?> delete(Principal principal) {
-		String username = principal.getName();
+	public ResponseEntity<?> delete() {
+		String token = jwtFacade.getToken();
+		String username = jwtUtil.getUsername(token);
 		
-		Account account = accountRepo.findAccountByUsername(username);
-		accountRepo.delete(account);
+		try {
+			Account account = accountRepo.findAccountByUsername(username);
+			accountRepo.delete(account);
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
+		}
 		
 		return ResponseEntity.ok(new DeleteResponse(HttpStatus.OK, "User '" + username + "' has been deleted"));
 	}
 	
+	@ExceptionHandler(value = UsernameNotFoundException.class)
+	public void exeptionHandler() {
+		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User not found or credentials wrong");
+	}
 }

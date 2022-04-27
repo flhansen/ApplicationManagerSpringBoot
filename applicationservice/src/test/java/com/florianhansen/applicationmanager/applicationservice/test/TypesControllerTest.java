@@ -1,4 +1,4 @@
-package com.florianhansen.applicationmanager.applicationservice;
+package com.florianhansen.applicationmanager.applicationservice.test;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ import com.florianhansen.applicationmananger.applicationservice.ApplicationServi
 @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
 @TestInstance(Lifecycle.PER_CLASS)
 @AutoConfigureMockMvc
-public class TypesTest {
+public class TypesControllerTest {
 	
 	@Autowired
 	private MockMvc mockMvc;

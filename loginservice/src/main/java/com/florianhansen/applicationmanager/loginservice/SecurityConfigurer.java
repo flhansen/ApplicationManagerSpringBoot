@@ -39,11 +39,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable()
-			// Don't require authentication for the login endpoint, so it's reachable.
 			.authorizeRequests().antMatchers("/api/auth/login", "/api/auth/register").permitAll()
-			// For the rest of the endpoints, authentication is required.
 			.anyRequest().authenticated().and()
-			// Dont use sessions, we want to use JsonWebTokens.
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		
 		// Place the JWT request filter just before the authentication filter.

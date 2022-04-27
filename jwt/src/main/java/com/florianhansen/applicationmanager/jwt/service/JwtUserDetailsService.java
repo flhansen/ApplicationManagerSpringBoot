@@ -25,7 +25,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 		Account account = accountRepo.findAccountByUsername(username);
 		
 		if (account == null)
-			throw new UsernameNotFoundException("The user does not exist or the credentials are wrong");
+			return null;
 		
 		return new JwtUser(account.getId(), account.getUsername(), account.getPassword(), new ArrayList<>());
 	}
