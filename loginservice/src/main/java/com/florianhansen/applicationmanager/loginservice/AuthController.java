@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.florianhansen.applicationmanager.crypto.HmacSHA256Encoder;
 import com.florianhansen.applicationmanager.jwt.service.JwtUserDetailsService;
@@ -53,13 +55,13 @@ public class AuthController {
 		try {
 			authManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
 		} catch (BadCredentialsException e) {
-			throw new Exception("Incorrect username or password", e);
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incorrect username or password", e);
 		}
 		
 		final UserDetails details = userDetailsService.loadUserByUsername(request.getUsername());
 		final String token = jwtUtil.generateToken(details);
 
-		return ResponseEntity.ok(new AuthenticationResponse(token));
+		return ResponseEntity.ok(new AuthenticationResponse(HttpStatus.OK, "Login successful", token));
 	}
 	
 	@PostMapping("register")
@@ -76,7 +78,7 @@ public class AuthController {
 		accounts.add(account);
 		accountRepo.saveAll(accounts);
 		
-		return ResponseEntity.ok(new RegisterResponse("User has been registered"));
+		return ResponseEntity.ok(new RegisterResponse(HttpStatus.OK, "User has been registered"));
 	}
 	
 	@DeleteMapping("delete")
@@ -86,7 +88,7 @@ public class AuthController {
 		Account account = accountRepo.findAccountByUsername(username);
 		accountRepo.delete(account);
 		
-		return ResponseEntity.ok(new DeleteResponse("User '" + username + "' has been deleted"));
+		return ResponseEntity.ok(new DeleteResponse(HttpStatus.OK, "User '" + username + "' has been deleted"));
 	}
 	
 }

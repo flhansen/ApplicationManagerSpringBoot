@@ -3,12 +3,14 @@ package com.florianhansen.applicationmananger.applicationservice.model;
 import java.util.List;
 
 import com.florianhansen.applicationmanager.model.WorkType;
+import com.florianhansen.applicationmanager.model.network.OkResponse;
 
-public class WorkTypesResponse {
+public class WorkTypesResponse extends OkResponse {
 	
 	private List<WorkType> workTypes;
 	
-	public WorkTypesResponse(List<WorkType> workTypes) {
+	public WorkTypesResponse(String message, List<WorkType> workTypes) {
+		super(message);
 		setWorkTypes(workTypes);
 	}
 

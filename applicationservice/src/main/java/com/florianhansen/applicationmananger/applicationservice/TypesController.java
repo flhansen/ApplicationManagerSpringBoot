@@ -30,13 +30,13 @@ public class TypesController {
 	@GetMapping("worktypes")
 	public ResponseEntity<WorkTypesResponse> getWorkTypes() {
 		List<WorkType> workTypes = workTypeRepo.findAll();
-		return ResponseEntity.ok(new WorkTypesResponse(workTypes));
+		return ResponseEntity.ok(new WorkTypesResponse("Fetched work types successfully", workTypes));
 	}
 
 	@GetMapping("statuses")
 	public ResponseEntity<ApplicationStatusesResponse> getApplicationStatuses() {
 		List<ApplicationStatus> applicationStatuses = applicationStatusRepo.findAll();
-		return ResponseEntity.ok(new ApplicationStatusesResponse(applicationStatuses));
+		return ResponseEntity.ok(new ApplicationStatusesResponse("Fetched application statuses successfully", applicationStatuses));
 	}
 	
 }

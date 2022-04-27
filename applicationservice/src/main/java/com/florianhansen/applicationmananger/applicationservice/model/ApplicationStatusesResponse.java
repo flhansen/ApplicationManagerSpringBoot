@@ -3,12 +3,14 @@ package com.florianhansen.applicationmananger.applicationservice.model;
 import java.util.List;
 
 import com.florianhansen.applicationmanager.model.ApplicationStatus;
+import com.florianhansen.applicationmanager.model.network.OkResponse;
 
-public class ApplicationStatusesResponse {
+public class ApplicationStatusesResponse extends OkResponse {
 	
 	private List<ApplicationStatus> applicationStatuses;
 	
-	public ApplicationStatusesResponse(List<ApplicationStatus> applicationStatuses) {
+	public ApplicationStatusesResponse(String message, List<ApplicationStatus> applicationStatuses) {
+		super(message);
 		setApplicationStatuses(applicationStatuses);
 	}
 

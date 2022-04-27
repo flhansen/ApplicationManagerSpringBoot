@@ -1,12 +1,14 @@
 package com.florianhansen.applicationmananger.applicationservice.model;
 
 import com.florianhansen.applicationmanager.model.Application;
+import com.florianhansen.applicationmanager.model.network.OkResponse;
 
-public class ApplicationResponse {
+public class ApplicationResponse extends OkResponse {
 
 	private Application application;
 	
-	public ApplicationResponse(Application application) {
+	public ApplicationResponse(String message, Application application) {
+		super(message);
 		setApplication(application);
 	}
 

@@ -19,12 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.florianhansen.applicationmanager.jwt.service.TokenAuthenticationFacade;
 import com.florianhansen.applicationmanager.jwt.util.JwtUtil;
-import com.florianhansen.applicationmanager.model.ApiResponse;
 import com.florianhansen.applicationmanager.model.Application;
+import com.florianhansen.applicationmanager.model.network.OkResponse;
 import com.florianhansen.applicationmanager.model.repository.ApplicationRepository;
 import com.florianhansen.applicationmananger.applicationservice.model.ApplicationResponse;
 import com.florianhansen.applicationmananger.applicationservice.model.ApplicationsResponse;
-
 
 @CrossOrigin
 @RestController
@@ -46,7 +45,7 @@ public class ApplicationsController {
 		Integer userId = jwtUtil.getUserId(token);
 		
 		List<Application> applications = applicationRepo.findApplicationsByUserId(userId);
-		return ResponseEntity.ok(new ApplicationsResponse(applications));
+		return ResponseEntity.ok(new ApplicationsResponse("Fetched applications successfully", applications));
 	}
 	
 	@GetMapping("{applicationId}")
@@ -66,7 +65,7 @@ public class ApplicationsController {
 			return ResponseEntity.notFound().build();
 		}
 		
-		return ResponseEntity.ok(new ApplicationResponse(application));
+		return ResponseEntity.ok(new ApplicationResponse("Fetched application successfully", application));
 	}
 	
 	@PostMapping
@@ -80,7 +79,7 @@ public class ApplicationsController {
 		applications.add(request);
 		applicationRepo.saveAll(applications);
 
-		return ResponseEntity.ok(new ApiResponse("New application has been created"));
+		return ResponseEntity.ok(new OkResponse("New application has been created"));
 	}
 	
 	@DeleteMapping("{applicationId}")
@@ -95,7 +94,7 @@ public class ApplicationsController {
 				throw new EntityNotFoundException();
 			
 			applicationRepo.delete(application);
-			return ResponseEntity.ok(new ApiResponse("Application has been deleted"));
+			return ResponseEntity.ok(new OkResponse("Application has been deleted"));
 		} catch (EntityNotFoundException e) {
 			return ResponseEntity.notFound().build();
 		}
@@ -123,7 +122,7 @@ public class ApplicationsController {
 			application.setWorkTypeId(request.getWorkTypeId());
 			applicationRepo.save(application);
 
-			return ResponseEntity.ok(new ApiResponse("Application has been updated"));
+			return ResponseEntity.ok(new OkResponse("Application has been updated"));
 		} catch (EntityNotFoundException e) {
 			return ResponseEntity.notFound().build();
 		}
