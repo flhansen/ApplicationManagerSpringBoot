@@ -26,7 +26,7 @@
     </dependency>
     <dependency>
       <groupId>com.florianhansen.applicationmanager</groupId>
-      <artifactId>jwt</artifactId>
+      <artifactId>authentication</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
@@ -58,6 +58,11 @@
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
       <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
     </dependency>
   </dependencies>
   

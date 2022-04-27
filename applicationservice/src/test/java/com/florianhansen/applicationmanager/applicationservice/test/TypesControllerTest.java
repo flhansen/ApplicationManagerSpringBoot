@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
-import com.florianhansen.applicationmanager.jwt.util.JwtUtil;
+import com.florianhansen.applicationmanager.authentication.util.JwtUtil;
 import com.florianhansen.applicationmananger.applicationservice.ApplicationServiceApplication;
 
 @RunWith(SpringRunner.class)

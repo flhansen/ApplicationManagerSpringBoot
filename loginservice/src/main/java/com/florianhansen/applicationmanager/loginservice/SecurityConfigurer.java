@@ -13,16 +13,16 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.florianhansen.applicationmanager.crypto.HmacSHA256Encoder;
-import com.florianhansen.applicationmanager.jwt.filter.JwtRequestFilter;
-import com.florianhansen.applicationmanager.jwt.service.JwtUserDetailsService;
+import com.florianhansen.applicationmanager.authentication.filter.JwtRequestFilter;
+import com.florianhansen.applicationmanager.authentication.service.JwtUserDetailsService;
+import com.florianhansen.applicationmanager.cryptography.HmacSHA256Encoder;
 
 @Configuration
 @EnableWebSecurity
 @Import({
-	com.florianhansen.applicationmanager.jwt.ModuleConfiguration.class,
+	com.florianhansen.applicationmanager.authentication.ModuleConfiguration.class,
 	com.florianhansen.applicationmanager.model.ModuleConfiguration.class,
-	com.florianhansen.applicationmanager.crypto.ModuleConfiguration.class})
+	com.florianhansen.applicationmanager.cryptography.ModuleConfiguration.class})
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
 	@Autowired

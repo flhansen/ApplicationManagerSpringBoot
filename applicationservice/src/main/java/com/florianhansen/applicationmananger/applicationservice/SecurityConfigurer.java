@@ -10,14 +10,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.florianhansen.applicationmanager.jwt.filter.JwtAuthFilter;
-import com.florianhansen.applicationmanager.jwt.service.JwtAuthenticationProvider;
+import com.florianhansen.applicationmanager.authentication.filter.JwtAuthFilter;
+import com.florianhansen.applicationmanager.authentication.service.JwtAuthenticationProvider;
 
 @Configuration
 @EnableWebSecurity
 @Import({
 	com.florianhansen.applicationmanager.model.ModuleConfiguration.class,
-	com.florianhansen.applicationmanager.jwt.ModuleConfiguration.class})
+	com.florianhansen.applicationmanager.authentication.ModuleConfiguration.class})
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 	
 	@Autowired

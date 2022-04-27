@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.florianhansen.applicationmanager.jwt.util.JwtUtil;
+import com.florianhansen.applicationmanager.authentication.util.JwtUtil;
 import com.florianhansen.applicationmanager.model.Application;
 import com.florianhansen.applicationmanager.model.repository.ApplicationRepository;
 import com.florianhansen.applicationmananger.applicationservice.ApplicationServiceApplication;

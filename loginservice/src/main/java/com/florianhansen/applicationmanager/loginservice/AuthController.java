@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.florianhansen.applicationmanager.crypto.HmacSHA256Encoder;
-import com.florianhansen.applicationmanager.jwt.service.JwtAuthenticationFacade;
-import com.florianhansen.applicationmanager.jwt.service.JwtUserDetailsService;
-import com.florianhansen.applicationmanager.jwt.util.JwtUtil;
+import com.florianhansen.applicationmanager.authentication.service.JwtAuthenticationFacade;
+import com.florianhansen.applicationmanager.authentication.service.JwtUserDetailsService;
+import com.florianhansen.applicationmanager.authentication.util.JwtUtil;
+import com.florianhansen.applicationmanager.cryptography.HmacSHA256Encoder;
 import com.florianhansen.applicationmanager.loginservice.model.AuthenticationRequest;
 import com.florianhansen.applicationmanager.loginservice.model.AuthenticationResponse;
 import com.florianhansen.applicationmanager.loginservice.model.DeleteResponse;

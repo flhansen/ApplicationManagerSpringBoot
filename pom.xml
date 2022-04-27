@@ -15,10 +15,10 @@
 	</properties>
 
     <modules>
-        <module>crypto</module>
+        <module>cryptography</module>
         <module>loginservice</module>
         <module>applicationservice</module>
-        <module>jwt</module>
+        <module>authentication</module>
         <module>model</module>
     </modules>
 </project>
