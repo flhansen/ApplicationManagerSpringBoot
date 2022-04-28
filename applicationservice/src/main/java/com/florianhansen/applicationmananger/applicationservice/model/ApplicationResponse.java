@@ -1,6 +1,6 @@
 package com.florianhansen.applicationmananger.applicationservice.model;
 
-import com.florianhansen.applicationmanager.model.Application;
+import com.florianhansen.applicationmanager.model.business.Application;
 import com.florianhansen.applicationmanager.model.network.OkResponse;
 
 public class ApplicationResponse extends OkResponse {

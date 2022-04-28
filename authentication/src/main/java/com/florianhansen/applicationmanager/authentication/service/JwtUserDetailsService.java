@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.florianhansen.applicationmanager.authentication.JwtUser;
-import com.florianhansen.applicationmanager.model.Account;
+import com.florianhansen.applicationmanager.model.business.Account;
 import com.florianhansen.applicationmanager.model.repository.AccountRepository;
 
 @Service

@@ -2,7 +2,7 @@ package com.florianhansen.applicationmananger.applicationservice.model;
 
 import java.util.List;
 
-import com.florianhansen.applicationmanager.model.Application;
+import com.florianhansen.applicationmanager.model.business.Application;
 import com.florianhansen.applicationmanager.model.network.OkResponse;
 
 public class ApplicationsResponse extends OkResponse {

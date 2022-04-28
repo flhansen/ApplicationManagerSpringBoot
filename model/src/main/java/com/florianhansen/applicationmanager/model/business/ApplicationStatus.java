@@ -1,4 +1,4 @@
-package com.florianhansen.applicationmanager.model;
+package com.florianhansen.applicationmanager.model.business;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

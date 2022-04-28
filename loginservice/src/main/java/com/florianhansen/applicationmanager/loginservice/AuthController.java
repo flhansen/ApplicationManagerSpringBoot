@@ -29,7 +29,7 @@ import com.florianhansen.applicationmanager.loginservice.model.AuthenticationRes
 import com.florianhansen.applicationmanager.loginservice.model.DeleteResponse;
 import com.florianhansen.applicationmanager.loginservice.model.RegisterRequest;
 import com.florianhansen.applicationmanager.loginservice.model.RegisterResponse;
-import com.florianhansen.applicationmanager.model.Account;
+import com.florianhansen.applicationmanager.model.business.Account;
 import com.florianhansen.applicationmanager.model.repository.AccountRepository;
 
 @CrossOrigin

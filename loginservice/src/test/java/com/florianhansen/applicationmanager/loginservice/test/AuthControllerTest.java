@@ -16,7 +16,7 @@ import com.florianhansen.applicationmanager.authentication.util.JwtUtil;
 import com.florianhansen.applicationmanager.cryptography.HmacSHA256Encoder;
 import com.florianhansen.applicationmanager.loginservice.model.AuthenticationRequest;
 import com.florianhansen.applicationmanager.loginservice.model.RegisterRequest;
-import com.florianhansen.applicationmanager.model.Account;
+import com.florianhansen.applicationmanager.model.business.Account;
 import com.florianhansen.applicationmanager.model.repository.AccountRepository;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;

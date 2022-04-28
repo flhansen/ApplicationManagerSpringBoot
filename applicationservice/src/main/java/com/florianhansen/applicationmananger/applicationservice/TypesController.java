@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.florianhansen.applicationmanager.model.ApplicationStatus;
-import com.florianhansen.applicationmanager.model.WorkType;
+import com.florianhansen.applicationmanager.model.business.ApplicationStatus;
+import com.florianhansen.applicationmanager.model.business.WorkType;
 import com.florianhansen.applicationmanager.model.repository.ApplicationStatusRepository;
 import com.florianhansen.applicationmanager.model.repository.WorkTypeRepository;
 import com.florianhansen.applicationmananger.applicationservice.model.ApplicationStatusesResponse;

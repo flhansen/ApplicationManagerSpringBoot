@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.florianhansen.applicationmanager.authentication.service.TokenAuthenticationFacade;
 import com.florianhansen.applicationmanager.authentication.util.JwtUtil;
-import com.florianhansen.applicationmanager.model.Application;
+import com.florianhansen.applicationmanager.model.business.Application;
 import com.florianhansen.applicationmanager.model.network.OkResponse;
 import com.florianhansen.applicationmanager.model.repository.ApplicationRepository;
 import com.florianhansen.applicationmananger.applicationservice.model.ApplicationResponse;
