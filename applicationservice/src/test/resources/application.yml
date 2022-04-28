@@ -1,6 +1,6 @@
+jwt:
+   signkey: TestSignKey
 spring:
-   config:
-      import: file:${HOME}/.secret/secrets.yml
    jpa:
       show-sql: true
       hibernate:
